@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The Number Game</title>
+</head>
+<body>
+ <script>
+const targetNumber = Math.floor(Math.random() * 100) + 1;
+
+// Tahmin etme oyunu
+let remainingGuesses = 5;
+
+while (remainingGuesses > 0) {
+  // Kullanıcıdan tahmin alınması
+  const userGuess = parseInt(prompt("Bir sayı tahmin edin (1-100 arasında):"));
+
+  // Geçerli bir tahmin yapılıp yapılmadığını kontrol etme
+  if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+    alert("Geçerli bir sayı giriniz!");
+    continue;
+  }
+
+  // Tahminin doğruluğunu kontrol etme
+  if (userGuess === targetNumber) {
+    console.log("Tebrikler! Sayıyı doğru tahmin ettiniz.");
+    break;
+  } else if (userGuess < targetNumber) {
+    console.log("Daha yüksek bir sayı tahmin edin.");
+  } else {
+    console.log("Daha düşük bir sayı tahmin edin.");
+  }
+
+  // Kalan tahmin hakkının güncellenmesi
+  remainingGuesses--;
+
+  // Kalan tahmin hakkının kontrolü
+  if (remainingGuesses === 0) {
+    console.log("Tahmin hakkınız kalmadı. Doğru sayı " + targetNumber + " idi.");
+  } else {
+    console.log("Kalan tahmin hakkınız: " + remainingGuesses);
+    if (userGuess < targetNumber) {
+      console.log("Tahmininizin altında bir sayı tahmin edin.");
+    } else {
+      console.log("Tahmininizin üstünde bir sayı tahmin edin.");
+    }
+  }
+}
+ </script>
+    
+</body>
+</html>
